@@ -3,11 +3,11 @@ Welcome to Scrapelytix! This package allows you to scrape football event data an
 
 ## Installation
 First, install the package using pip:
-`pip install Scrapelytix`
+`pip install scrapelytix`
 
 ## Usage Guide
 ### Step 1: Prepare the Data
-To use Scrapelytix, you must provide the match scorecard URL from the match you want to scrape and your User-Agent.
+To use Scrapelytix, you need to provide the URL of the match scorecard from the match center you want to scrape and your User-Agent.
 
 ### Step 2: Scrape the Data
 Here's a step-by-step guide to using Scrapelytix:
@@ -19,22 +19,22 @@ import json
 import pandas as pd
 import requests
 import numpy as np
-from Scrapelytix.extraction import pass_data, player_data
-from Scrapelytix.filter import analyze_passes, analyze_shots
-from Scrapelytix.plot import pass_network, prg_passes, shot_map
+from Datawiz.extraction import pass_data, player_data
+from Datawiz.filter import analyze_passes, analyze_shots
+from Datawiz.plot import pass_network, prg_passes, shot_map
 ```
 Prompt the User for the URL:
 ```
-url = input("Enter the URL for event data: ")
-url_shots = 'https://api.sofascore.com/api/v1/event/11352376/shotmap'  
+url = input("Enter the URL for pass data: ")
+url_shots = 'https://api.sofascore.com/api/v1/event/11352376/shotmap'
 HEADERS = {
-'User-Agent': "Enter your own user agent",
-'Referer': "https://www.whoscored.com/",
-'Accept-Language': "en-US,en;q=0.5",
-'Accept-Encoding': "gzip, deflate, br",
-'Connection': "keep-alive",
-'Upgrade-Insecure-Requests': "1",
-'TE': "Trailers"
+    'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
+    'Referer': "https://www.whoscored.com/",
+    'Accept-Language': "en-US,en;q=0.5",
+    'Accept-Encoding': "gzip, deflate, br",
+    'Connection': "keep-alive",
+    'Upgrade-Insecure-Requests': "1",
+    'TE': "Trailers"
 }
 ```
 Extract Player and Pass Data:
@@ -48,7 +48,7 @@ Analyze Passes:
 # Extracting team ids
 team_ids = df_passes['teamId'].unique()
 
-# Defining home and away colours for each team
+# Defining home and away colors for each team
 home_colors = ['#FF0000', '#0000FF']  # Example colors (replace with actual colors)
 away_colors = ['#FFFFFF', '#FFFFFF']  # Example colors (replace with actual colors)
 
@@ -84,11 +84,15 @@ prg_passes(df_comp_prg_home, df_uncomp_prg_home, df_comp_prg_away, df_uncomp_prg
 
 To better illustrate the steps, you can include screenshots of the outputs after each significant step. This will help users understand the intermediate results and the final visualizations.
 
-1. **Pass Network Visualization:**
-   - ![Pass Network](Scrapelytix/Figure_1.png)
+1. **Initial Data Extraction:**
+   - ![Player Data](images/player_data.png)
+   - ![Pass Data](images/pass_data.png)
 
-2. **Progressive Passes Visualization:**
-   - ![Progressive Passes](Scrapelytix/Figure_2.png)
+2. **Pass Network Visualization:**
+   - ![Pass Network](images/pass_network.png)
+
+3. **Progressive Passes Visualization:**
+   - ![Progressive Passes](images/progressive_passes.png)
 
 ### Conclusion
 
